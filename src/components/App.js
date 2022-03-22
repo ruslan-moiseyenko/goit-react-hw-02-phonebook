@@ -1,46 +1,32 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { nanoid } from 'nanoid';
 import Section from './feedback/Section';
-import FeedbackOptions from './feedback/FeedbackOptions';
-import Statistics from './feedback/Statistics';
+import PhonebookAddingFormn from './phonebookAddingForm/phonebookAddingForm';
 
-class App extends React.Component {
+class App extends Component {
   state = {
-    good: 0,
-    neutral: 0,
-    bad: 0,
+    contacts: [
+      // { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
+      // { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
+      // { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
+      // { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
+    ],
+    name: '',
   };
 
-  handleButtonClick = option => {
-    this.setState({ [option]: this.state[option] + 1 });
-  };
+  // addContacts = event => {
+  //   this.setState({ contacts: event.target.value });
+  // };
 
-  countTotalFeedback = () => {
-    return this.state.good + this.state.bad + this.state.neutral;
-  };
-
-  countPositiveFeedbackPercentage = () => {
-    return (this.state.good / this.countTotalFeedback()) * 100;
+  submitHandler = data => {
+    console.log(data);
   };
 
   render() {
-    const { good, neutral, bad } = this.state;
     return (
       <>
-        <Section title="Please leave your feedback">
-          <FeedbackOptions
-            options={['good', 'neutral', 'bad']}
-            onLeaveFeedback={this.handleButtonClick}
-          />
-        </Section>
-
-        <Section title="Statistics">
-          <Statistics
-            good={good}
-            neutral={neutral}
-            bad={bad}
-            total={this.countTotalFeedback()}
-            positivePercentage={this.countPositiveFeedbackPercentage()}
-          />
+        <Section title="Phonebook">
+          <PhonebookAddingFormn onSubmit={this.submitHandler} />
         </Section>
       </>
     );
