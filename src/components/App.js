@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { nanoid } from 'nanoid';
 import Section from './feedback/Section';
-import PhonebookAddingFormn from './phonebookAddingForm/phonebookAddingForm';
+import PhonebookAddingForm from './phonebookAddingForm/phonebookAddingForm';
 
 class App extends Component {
   state = {
@@ -20,13 +20,19 @@ class App extends Component {
 
   submitHandler = data => {
     console.log(data);
+    this.setState(prevState => {
+      return (
+        { contacts: [...prevState.contacts, data] }
+      );
+    }
+    );
   };
 
   render() {
     return (
       <>
         <Section title="Phonebook">
-          <PhonebookAddingFormn onSubmit={this.submitHandler} />
+          <PhonebookAddingForm onSubmit={this.submitHandler} />
         </Section>
       </>
     );
