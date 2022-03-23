@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { nanoid } from 'nanoid';
-import PropTypes from 'prop-types';
+// import { nanoid } from 'nanoid';
+// import PropTypes from 'prop-types';
 
 class PhonebookAddingForm extends Component {
   state = { name: '' };
