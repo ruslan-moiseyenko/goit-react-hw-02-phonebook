@@ -1,12 +1,11 @@
 import React from 'react';
-import { nanoid } from 'nanoid';
 import PropTypes from 'prop-types';
 
 const Contacts = ({ contacts }) => {
   return (
     <ul>
-      {contacts.map(({ name }) =>
-        <li key={nanoid()}>{name}</li>
+      {contacts.map(({ id, name, number }) =>
+        <li key={id}>{name} : {number}</li>
       )}
     </ul>
   );

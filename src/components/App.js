@@ -11,18 +11,13 @@ class App extends Component {
       { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
       { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
     ],
-    name: '',
   };
-
-
   submitHandler = data => {
-    console.log(data);
     this.setState(prevState => (
       { contacts: [...prevState.contacts, data] }
     )
     );
   };
-
   render() {
     return (
       <>

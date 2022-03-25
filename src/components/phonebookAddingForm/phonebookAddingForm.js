@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
-// import { nanoid } from 'nanoid';
+import { nanoid } from 'nanoid';
 // import PropTypes from 'prop-types';
 
 class PhonebookAddingForm extends Component {
-  state = { name: '' };
+  state = {
+    id: '',
+    name: '',
+    number: ''
+  };
 
   handleChange = event => {
     const { name, value } = event.currentTarget;
@@ -14,12 +18,18 @@ class PhonebookAddingForm extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    this.props.onSubmit(this.state);
+    let currentState = this.state;
+    currentState.id = nanoid();
+    this.props.onSubmit(currentState);
     this.reset();
   };
 
   reset = () => {
-    this.setState({ name: '' });
+    this.setState({
+      id: '',
+      name: '',
+      number: '',
+    });
   };
 
   render() {
@@ -36,10 +46,24 @@ class PhonebookAddingForm extends Component {
             required
             onChange={this.handleChange}
           />
+          <br />
+          <label>
+            Phone
+            <input
+              type="tel"
+              name="number"
+              value={this.state.number}
+              pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+              title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+              required
+              onChange={this.handleChange}
+            />
+          </label>
+          <br />
           <button
             type="submit"
             name="button Add"
-            onClick={e => console.log(e.currentTarget.name)}
+          // onClick={e => console.log(nanoid())}
           >
             Add contact
           </button>
