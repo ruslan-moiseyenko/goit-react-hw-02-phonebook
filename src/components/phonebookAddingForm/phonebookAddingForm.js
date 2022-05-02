@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
-import { nanoid } from 'nanoid';
 import { FormPhoneBook, FormInput } from './FormPhoneBook.styled';
+import PropTypes from 'prop-types';
 
 class PhonebookAddingForm extends Component {
   state = {
-    id: '',
     name: '',
-    number: ''
+    number: '',
   };
 
   handleChange = event => {
@@ -19,14 +18,12 @@ class PhonebookAddingForm extends Component {
   handleSubmit = event => {
     event.preventDefault();
     let currentState = this.state;
-    currentState.id = nanoid();
     this.props.onSubmit(currentState);
     this.reset();
   };
 
   reset = () => {
     this.setState({
-      id: '',
       name: '',
       number: '',
     });
@@ -60,11 +57,7 @@ class PhonebookAddingForm extends Component {
             />
           </label>
           <br />
-          <button
-            type="submit"
-            name="button Add"
-          // onClick={e => console.log(nanoid())}
-          >
+          <button type="submit" name="button Add">
             Add contact
           </button>
         </label>
@@ -74,3 +67,7 @@ class PhonebookAddingForm extends Component {
 }
 
 export default PhonebookAddingForm;
+
+PhonebookAddingForm.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+};
